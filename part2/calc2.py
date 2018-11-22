@@ -139,7 +139,7 @@ def main():
     while True:
         try:
             try:
-                text = raw_input('calc> ')
+                text = input('calc> ')
             except NameError:  # Python3
                 text = input('calc> ')
         except EOFError:

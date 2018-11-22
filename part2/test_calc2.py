@@ -4,47 +4,47 @@ import unittest
 class CalcTestCase(unittest.TestCase):
 
     def makeInterpreter(self, text):
-        from calc2 import Interpreter
+        from part2.calc2 import Interpreter
         interpreter = Interpreter(text)
         return interpreter
 
     def test_lexer_integer(self):
-        from calc2 import INTEGER
+        from part2.calc2 import INTEGER
         lexer = self.makeInterpreter('234')
         token = lexer.get_next_token()
         self.assertEqual(token.type, INTEGER)
         self.assertEqual(token.value, 234)
 
     def test_lexer_plus(self):
-        from calc2 import PLUS
+        from part2.calc2 import PLUS
         lexer = self.makeInterpreter('+')
         token = lexer.get_next_token()
         self.assertEqual(token.type, PLUS)
         self.assertEqual(token.value, '+')
 
     def test_lexer_minus(self):
-        from calc2 import MINUS
+        from part2.calc2 import MINUS
         lexer = self.makeInterpreter('-')
         token = lexer.get_next_token()
         self.assertEqual(token.type, MINUS)
         self.assertEqual(token.value, '-')
 
     def test_lexer_eof(self):
-        from calc2 import EOF
+        from part2.calc2 import EOF
         lexer = self.makeInterpreter('-')
         token = lexer.get_next_token()
         token = lexer.get_next_token()
         self.assertEqual(token.type, EOF)
 
     def test_lexer_whitespace(self):
-        from calc2 import INTEGER
+        from part2.calc2 import INTEGER
         lexer = self.makeInterpreter('  23')
         token = lexer.get_next_token()
         self.assertEqual(token.type, INTEGER)
         self.assertEqual(token.value, 23)
 
     def test_lexer_addition(self):
-        from calc2 import INTEGER, PLUS, EOF
+        from part2.calc2 import INTEGER, PLUS, EOF
         lexer = self.makeInterpreter('2+3')
 
         token = lexer.get_next_token()
@@ -63,7 +63,7 @@ class CalcTestCase(unittest.TestCase):
         self.assertEqual(token.type, EOF)
 
     def test_lexer_subtraction(self):
-        from calc2 import INTEGER, MINUS, EOF
+        from part2.calc2 import INTEGER, MINUS, EOF
         lexer = self.makeInterpreter(' 27   -  7  ')
 
         token = lexer.get_next_token()

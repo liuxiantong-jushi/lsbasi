@@ -45,7 +45,10 @@ class Interpreter(object):
         raise Exception('Invalid syntax')
 
     def advance(self):
-        """Advance the `pos` pointer and set the `current_char` variable."""
+        """
+        Advance the `pos` pointer and set the `current_char` variable.
+        advance是中文进位的意思
+        """
         self.pos += 1
         if self.pos > len(self.text) - 1:
             self.current_char = None  # Indicates end of input
@@ -132,7 +135,7 @@ def main():
     while True:
         try:
             try:
-                text = raw_input('calc> ')
+                text = input('calc> ')
             except NameError:  # Python3
                 text = input('calc> ')
         except EOFError:
