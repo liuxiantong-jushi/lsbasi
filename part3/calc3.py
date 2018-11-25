@@ -80,6 +80,7 @@ class Interpreter(object):
                 continue
 
             if self.current_char.isdigit():
+                # 这里的一个小花招，在对象级别共享current index
                 return Token(INTEGER, self.integer())
 
             if self.current_char == '+':
@@ -102,6 +103,8 @@ class Interpreter(object):
         # type and if they match then "eat" the current token
         # and assign the next token to the self.current_token,
         # otherwise raise an exception.
+
+        # eat这里有一个很好的设计，即需输入类型，若类型不符则抛出异常，实际上是增加离很强的约束
         if self.current_token.type == token_type:
             self.current_token = self.get_next_token()
         else:
@@ -114,11 +117,15 @@ class Interpreter(object):
         return token.value
 
     def expr(self):
-        """Arithmetic expression parser / interpreter."""
+        """
+        Arithmetic expression parser / interpreter.
+        在整个计算过程中，没有明显地形成新的表达式的过程，因为目前的计算很简单
+        """
         # set current token to the first token taken from the input
         self.current_token = self.get_next_token()
 
         result = self.term()
+        # 这里的处理基本就是把syntax diagram翻译成代码
         while self.current_token.type in (PLUS, MINUS):
             token = self.current_token
             if token.type == PLUS:
