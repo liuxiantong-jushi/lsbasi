@@ -86,4 +86,5 @@ Example -- surpport mul and div:
 >expr : term( (plus | minus) term) *   
 >term : factor( (mul | div) factor) *     
 >factor : integer     
- 
+  
+***一句话概括，将某一优先级的计算封装为一non-terminal，上一优先级只是对低一级non-terminal的计算，然后递归*** 
